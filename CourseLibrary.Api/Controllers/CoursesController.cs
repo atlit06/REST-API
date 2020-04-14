@@ -17,7 +17,7 @@ namespace CourseLibrary.Api.Controllers
         public CoursesController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
         {
             _courseLibraryRepository = courseLibraryRepository ?? throw new ArgumentNullException(nameof(courseLibraryRepository));
-            _mapper = mapper;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
