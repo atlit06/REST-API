@@ -1,7 +1,7 @@
 using AutoMapper;
 using CourseLibrary.Api.Helpers;
 using CourseLibrary.Api.Models;
-using CourseLibrary.API.Entities;
+using CourseLibrary.Api.Entities;
 
 namespace CourseLibrary.Api.Profiles
 {
@@ -9,14 +9,14 @@ namespace CourseLibrary.Api.Profiles
     {
         public AuthorProfile()
         {
-            CreateMap<Author, AuthorDto>()
+            CreateMap<Entities.Author, Models.AuthorDto>()
                 .ForMember(
                     dest => dest.Name,
                     opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForMember(
                     dest => dest.Age,
                     opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
-            ;
+            CreateMap<Models.AuthorForCreationDto, Entities.Author>();
         }
     }
 }

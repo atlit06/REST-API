@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
-using CourseLibrary.API.DbContexts;
-using CourseLibrary.API.Services;
+using CourseLibrary.Api.DbContexts;
+using CourseLibrary.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
