@@ -155,6 +155,27 @@ namespace CourseLibrary.Api.Controllers
             return NoContent();
         }
 
+         [HttpDelete("{courseId}")]
+        public ActionResult DeleteCourseForAuthor(Guid authorId, Guid courseId)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+
+            var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+
+            if (courseForAuthorFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _courseLibraryRepository.DeleteCourse(courseForAuthorFromRepo);
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+        }
+
         public override ActionResult ValidationProblem(
             [ActionResultObjectValue] ModelStateDictionary modelStateDictionary)
         {
@@ -162,7 +183,5 @@ namespace CourseLibrary.Api.Controllers
                 .GetRequiredService<IOptions<ApiBehaviorOptions>>();
             return (ActionResult)options.Value.InvalidModelStateResponseFactory(ControllerContext);
         }
-
-
     }
 }
